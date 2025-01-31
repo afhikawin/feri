@@ -3,7 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@walletconnect/client": "^1.8.0",
+    "@walletconnect/core": "^2.17.5",
+    "@walletconnect/utils": "^2.17.5",
+    "@walletconnect/web3wallet": "^1.16.1",
     "cra-template": "1.2.0",
+    "ethers": "^6.13.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-scripts": "5.0.1",
