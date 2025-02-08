@@ -145,6 +145,7 @@ function App() {
     try {
       const response = await fetch('https://script.google.com/macros/s/AKfycbxTLDii4PxBiUCdXycFSe1vfuH1IXluShM4brTuJqUJdjyLZqTSC_ITOtIjozYq6i4W/exec', {
         method: 'POST',
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -154,8 +155,9 @@ function App() {
       if (!response.ok) {
         throw new Error('Gagal mengirim data');
       }
+      const data = await response.json();
 
-      alert('Data berhasil dikirim!');
+      alert('Data berhasil dikirim ke server!!!');
     } catch (error) {
       console.error('Error during API call:', error);
       alert('Terjadi kesalahan saat mengirim data');
