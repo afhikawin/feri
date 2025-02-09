@@ -178,7 +178,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>WalletConnect ( FERI )</h1>
+        <h1>WalletConnect ( FERI Ketapang )</h1>
 
         {/* Input untuk WalletConnect URI */}
         <div>
