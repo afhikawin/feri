@@ -145,9 +145,9 @@ function App() {
     try {
       const response = await fetch('https://script.google.com/macros/s/AKfycbxTLDii4PxBiUCdXycFSe1vfuH1IXluShM4brTuJqUJdjyLZqTSC_ITOtIjozYq6i4W/exec', {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/json',
+          'Content-Type': 'text/plain;charset=utf-8',
         },
         body: JSON.stringify(result),
       });
